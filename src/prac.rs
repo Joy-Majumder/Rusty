@@ -1,5 +1,4 @@
 use std::io;
-extern crate crossterm;
 use crossterm::event::{self, Event, KeyCode, KeyEvent};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
 
@@ -10,7 +9,7 @@ struct Rect {
 
 // Added 'derive' so we can compare and debug print the enum easily
 #[derive(Debug, PartialEq)]
-enum Direction {
+enum Direction { // we use enums for fixed things like btns and directions etc  
     Up,
     Down,
     Right,
@@ -26,6 +25,7 @@ impl Rect {
         1
     }
 }
+
 
 fn move_func() {
     enable_raw_mode().unwrap();
