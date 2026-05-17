@@ -939,106 +939,167 @@
 //     println!("Current local. time is : {local}");
 // }
 
-
-use std::fmt::Debug;
-// practice here 
-use std::io;
-use crossterm::event::{self, Event, KeyCode, KeyEvent};
-use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
-
-struct Rect {
-    width: i32,
-    height: i32,
+/*
+the tuple type : 
+fn tuple() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
 }
+ */
 
-// Added 'derive' so we can compare and debug print the enum easily
-#[derive(Debug, PartialEq)]
-enum Direction { // we use enums for fixed things like btns and directions etc  
-    Up,
-    Down,
-    Right,
-    Left,
-    Esc,
-    Keys,
-    Numbers,
-}
+// fn main() {
+//     let tup = (500, 6.4, 1);
 
-impl Rect {
-    fn area(&self) -> i32 {
-        self.width * self.height
-    }
-    fn debug() -> i32 {
-        1
-    }
-}
+//     let (x, y, z) = tup;
 
-#[warn(unreachable_patterns)]
-fn move_func() {
-    enable_raw_mode().unwrap();
-    // In Raw Mode, we use \r\n to ensure the cursor starts at the left
-    println!("Control the Rect! Press Arrow Keys (Esc to quit)\r");
+//     println!("The value of x is: {x}");
+//     println!("The value of y is: {y}");
+//     println!("The value of z is: {z}");
+// }
 
-    loop {
-        if let Ok(Event::Key(KeyEvent { code, .. })) = event::read() {
+// fn main() {
+//     let x: (i32, f64, u8) = (500, 6.4, 1);
+
+//     let five_hundred = x.0; // We can also access a tuple element directly by using a period (.) followed by the index of the value we want to access.
+//     let six_point_four = x.1;
+//     let one = x.2;
+
+//     println!("{five_hundred}, {six_point_four}, {one}");
+// }
+
+// fn main(){
+    // let a: [i32; 5] = [1, 2, 3, 4, 5]; // this is how we can store values using array
+    // print!("{}",a[0]); // we can access vlaues on array using a[index-number]
+// }
+
+// fn main() {
+//     print_labeled_measurement(5, 'h');
+// }
+
+// fn print_labeled_measurement(unit:u8, unit_label:char){
+//     println!("{unit}, {unit_label}");
+// }
+
+// use std::io;
+
+// fn main(){
+//     let y:i8 = 
+//     { // by doing this we can also assign vlaues under thisss gottaa.
+//         let x:i8 = 21;
+//         // io::stdin().read_line(&mut y).expect("msg");
+//         x + 1
+//     };
+//     print!("The value of x is ; {y}");
+// }
+
+
+
+ // Project start from here
+// use std::fmt::Debug;
+// // practice here 
+// use std::io;
+// use crossterm::event::{self, Event, KeyCode, KeyEvent};
+// use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
+
+// struct Rect {
+//     width: i32,
+//     height: i32,
+// }
+
+// // Added 'derive' so we can compare and debug print the enum easily
+// #[derive(Debug, PartialEq)]
+// enum Direction { // we use enums for fixed things like btns and directions etc  
+//     Up,
+//     Down,
+//     Right,
+//     Left,
+//     Esc,
+//     Keys,
+//     Numbers,
+// }
+
+// impl Rect {
+//     fn area(&self) -> i32 {
+//         self.width * self.height
+//     }
+//     fn debug() -> i32 {
+//         1
+//     }
+// }
+
+// #[warn(unreachable_patterns)]
+// fn move_func() {
+//     enable_raw_mode().unwrap();
+//     // In Raw Mode, we use \r\n to ensure the cursor starts at the left
+//     println!("Control the Rect! Press Arrow Keys (Esc to quit)\r");
+
+//     loop {
+//         if let Ok(Event::Key(KeyEvent { code, .. })) = event::read() {
             
-            let dir = match code {
-                KeyCode::Up => Direction::Up,
-                KeyCode::Down => Direction::Down,
-                KeyCode::Left => Direction::Left,
-                KeyCode::Right => Direction::Right,
-                KeyCode::Esc => Direction::Esc,
-                KeyCode::KeypadBegin => Direction::Keys,
-                KeyCode::NumLock => Direction::Numbers,
-                _ => continue,
-            };
-            match dir {
-                Direction::Up => println!("Yay bro! Moving Up\r"),
-                Direction::Down => println!("Yay bro! Moving Down\r"),
-                Direction::Left => println!("Yay bro! Moving Left\r"),
-                Direction::Right => println!("Yay bro! Moving Right\r"),
-                Direction::Keys => println!("Yay bro! You typed Key\r"),
-                Direction::Numbers => println!("Yay bro! You Typed nums\r"),
-                Direction::Esc => break, // Exit the loop
-                // _- => println!("Enter valid btns broc"),
+//             let dir = match code {
+//                 KeyCode::Up => Direction::Up,
+//                 KeyCode::Down => Direction::Down,
+//                 KeyCode::Left => Direction::Left,
+//                 KeyCode::Right => Direction::Right,
+//                 KeyCode::Esc => Direction::Esc,
+//                 KeyCode::KeypadBegin => Direction::Keys,
+//                 KeyCode::NumLock => Direction::Numbers,
+//                 _ => continue,
+//             };
+//             match dir {
+//                 Direction::Up => println!("Yay bro! Moving Up\r"),
+//                 Direction::Down => println!("Yay bro! Moving Down\r"),
+//                 Direction::Left => println!("Yay bro! Moving Left\r"),
+//                 Direction::Right => println!("Yay bro! Moving Right\r"),
+//                 Direction::Keys => println!("Yay bro! You typed Key\r"),
+//                 Direction::Numbers => println!("Yay bro! You Typed nums\r"),
+//                 Direction::Esc => break, // Exit the loop brooooo
+//                 // _- => println!("Enter valid btns broc"),
 
-            }
-        }
-    }
-    disable_raw_mode().unwrap();
-}
+//             }
+//         }
+//     }
+//     disable_raw_mode().unwrap();
+// }
 
-fn main() {
-    let msg = "Please enter a valid number broo : !";
+// fn main() {
+//     let msg = "Please enter a valid number broo : !";
     
-    println!("Enter Width:");
-    let mut w = String::new();
-    io::stdin().read_line(&mut w).expect(msg);
-    let width: i32 = w.trim().parse().unwrap_or(0);
+//     println!("Enter Width:");
+//     let mut w = String::new();
+//     io::stdin().read_line(&mut w).expect(msg);
+//     let width: i32 = w.trim().parse().unwrap_or(0);
 
-    println!("Enter Height:");
-    let mut h = String::new();
-    io::stdin().read_line(&mut h).expect(msg);
-    let height: i32 = h.trim().parse().unwrap_or(0);
+//     println!("Enter Height:");
+//     let mut h = String::new();
+//     io::stdin().read_line(&mut h).expect(msg);
+//     let height: i32 = h.trim().parse().unwrap_or(0);
 
-    let rect = Rect { width, height };
+//     let rect = Rect { width, height };
 
-    println!("Show stats? (true/false):");
-    let mut choice = String::new();
-    io::stdin().read_line(&mut choice).expect(msg);
+//     println!("Show stats? (true/false):");
+//     let mut choice = String::new();
+//     io::stdin().read_line(&mut choice).expect(msg);
     
-    move_func();
     
-    if choice.trim().parse::<bool>().unwrap_or(false) {
-        println!("Area: {}", rect.area());
-        println!("Debug: {}", Rect::debug());
-    }
+//     if choice.trim().parse::<bool>().unwrap_or(false) {
+//         move_func(); // By here we are doing up down left right soo here the function..
+//         println!("Area: {}", rect.area());
+//         println!("Debug: {}", Rect::debug());
+//     }
     
-    if rect.area() >= 100 && rect.area() <= 2500{
-        print!("Enter the points u're want to earn from by playing this game? : ");
-        let mut points = String::new();
-        io::stdin().read_line(&mut points).expect(msg);
-        let point :i32 = h.trim().parse().unwrap_or(0);
-        println!("Bro You want to play {point} round");
+//     if rect.area() >= 100 && rect.area() <= 250{
+//         // print!("Enter the points u're want to earn from by playing this game? : ");
+//         let mut points = String::new();
+//         io::stdin().read_line(&mut points).expect(msg);
+//         let point :i32 = h.trim().parse().unwrap_or(0);
+//         println!("Bro You want to play {point} round");
+//         while point >= 0 {
+            
+//         }
+//     } else {
+//         println!("Fix your range make sure you are within that width :)");
+//         println!("End Up\nTry again later:)");
+//     }
 
-    }
-}
+
+// }
